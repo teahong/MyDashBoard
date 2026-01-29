@@ -1,0 +1,5 @@
+{
+  "name": "Space Dashboard & Todo",
+  "description": "A split-screen Chrome start page with a space theme, featuring quick links to educational portals and a Google Sheets-backed To-Do list.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // todos 컬렉션 규칙
+    match /todos/{todoId} {
+      // 본인의 데이터만 읽기, 쓰기 가능
+      allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+      // 생성 시에는 본인의 UID를 userId로 설정해야 함
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+    
+    // sites 컬렉션 규칙
+    match /sites/{siteId} {
+      // 본인의 데이터만 읽기, 쓰기 가능
+      allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+      // 생성 시에는 본인의 UID를 userId로 설정해야 함
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+  }
+}
